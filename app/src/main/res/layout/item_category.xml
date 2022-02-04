@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="category"
+            type="com.case_study_alza.services.CategoryItem"
+            />
+
+        <variable
+            name="viewModel"
+            type="com.case_study_alza.screen.categories.CategoriesViewModel"
+            />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:onClick="@{() -> viewModel.selectCategory()}"
+        android:orientation="horizontal"
+        android:paddingStart="?screenMargin"
+        android:paddingTop="16dp"
+        android:paddingEnd="?screenMargin"
+        android:paddingBottom="16dp"
+        >
+
+        <TextView
+            style="?attr/textCopy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@{category.name}"
+            android:textAlignment="textStart"
+            tools:text="Computers"
+            />
+
+    </LinearLayout>
+
+</layout>

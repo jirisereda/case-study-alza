@@ -12,5 +12,23 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="textCopy">@style/CopyText</item>
+        <item name="screenMargin">@dimen/screen_margin</item>
     </style>
+
+    <style name="CopyText">
+        <item name="drawableTint">?android:attr/textColorPrimary</item>
+        <item name="android:fontFamily">@font/lato</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+
+    <style name="Theme.Casestudyalza.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>
