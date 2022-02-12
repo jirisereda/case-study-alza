@@ -11,7 +11,7 @@
 
         <variable
             name="adapter"
-            type="com.case_study_alza.screen.categories.CategoriesAdapter"
+            type="com.case_study_alza.screen.products.ProductsAdapter"
             />
 
     </data>
@@ -29,7 +29,7 @@
             android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             bind:adapter="@{adapter}"
-            tools:listitem="@layout/item_category"
+            tools:listitem="@layout/item_product"
             />
 
     </LinearLayout>

@@ -3,11 +3,11 @@ package com.case_study_alza.services
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class FlowCategoriesApi(private val api: ApiService) {
+class FlowProductsApi(private val api: ApiService) {
 
-    fun getCategories(): Flow<List<CategoryItem>> {
+    fun getProducts(productsRequest: ProductsRequest): Flow<List<ProductItem>> {
         return flow {
-            api.getCategories().body()?.let {
+            api.getProducts(productsRequest).body()?.let {
                 emit(it.data)
             }
         }

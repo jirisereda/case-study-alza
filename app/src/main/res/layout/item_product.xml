@@ -7,13 +7,13 @@
     <data>
 
         <variable
-            name="category"
-            type="com.case_study_alza.services.CategoryItem"
+            name="product"
+            type="com.case_study_alza.services.ProductItem"
             />
 
         <variable
             name="viewModel"
-            type="com.case_study_alza.screen.categories.CategoriesViewModel"
+            type="com.case_study_alza.screen.products.ProductsViewModel"
             />
 
     </data>
@@ -25,7 +25,7 @@
         android:clickable="true"
         android:focusable="true"
         android:gravity="center_vertical"
-        android:onClick="@{() -> viewModel.selectCategory(category.id)}"
+        android:onClick="@{() -> viewModel.selectProduct(product.id)}"
         android:orientation="horizontal"
         android:paddingStart="?screenMargin"
         android:paddingTop="16dp"
@@ -38,7 +38,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@{category.name}"
+            android:text="@{product.name}"
             android:textAlignment="textStart"
             tools:text="Computers"
             />

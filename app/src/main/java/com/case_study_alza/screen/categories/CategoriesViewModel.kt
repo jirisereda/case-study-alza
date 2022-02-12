@@ -1,6 +1,7 @@
 package com.case_study_alza.screen.categories
 
 import androidx.lifecycle.viewModelScope
+import com.case_study_alza.MainGraphDirections
 import com.case_study_alza.core.EmptyArgs
 import com.case_study_alza.core.Event
 import com.case_study_alza.core.ScreenViewModel
@@ -51,8 +52,9 @@ class CategoriesViewModel : ScreenViewModel<CategoriesState, EmptyArgs>(
             .launchIn(viewModelScope)
     }
 
-    fun selectCategory() {
-        nextEvent(HelloEvent)
+    fun selectCategory(id: Long) {
+        //nextEvent(HelloEvent)
+        MainGraphDirections.actionProductsScreen(id).navigate()
     }
 
 

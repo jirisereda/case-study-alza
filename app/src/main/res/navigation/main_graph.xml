@@ -12,4 +12,22 @@
         android:name="com.case_study_alza.screen.categories.CategoriesScreen"
         />
 
+    <action
+        android:id="@+id/action_productsScreen"
+        app:destination="@id/productsScreen"
+        />
+
+    <fragment
+        android:id="@+id/productsScreen"
+        android:name="com.case_study_alza.screen.products.ProductsScreen"
+        tools:layout="@layout/products_screen"
+        >
+
+        <argument
+            android:name="categoryId"
+            app:argType="long"
+            />
+
+    </fragment>
+
 </navigation>

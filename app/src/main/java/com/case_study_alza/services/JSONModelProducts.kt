@@ -4,19 +4,21 @@ package com.case_study_alza.services
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class JSONModel(
+data class JSONModelProducts(
 
     // Use @SerializedName(" ") for the Gson converter
     // @field:Json(name = " ") for the Moshi converter
     // @SerialName(" ") for the Kotlinx Serialization converter
     // @JsonProperty(" ") for the Jackson converter
 
-    var data: List<CategoryItem>
-
+    var data: List<ProductItem>
 )
 
 @Serializable
-data class CategoryItem(
+data class ProductItem(
+
     val name: String?,
     val id: Long?
 )
+
+

@@ -21,7 +21,6 @@ class CategoriesScreen : Screen<CategoriesViewModel, CategoriesScreenBinding, Em
             it.state.map { state -> state.categoryItems }.asFlow(),
             it
         )
-        viewModel = it
     }
     override val screenArgs = EmptyArgs
 

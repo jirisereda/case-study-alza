@@ -26,4 +26,12 @@ class MainActivity : AppCompatActivity() {
 
         navController.setGraph(R.navigation.main_graph)
     }
+
+    override fun onBackPressed() {
+        if (navController.graph.startDestinationId == navController.currentDestination?.id) {
+            finish()
+        } else {
+            super.onBackPressed()
+        }
+    }
 }
