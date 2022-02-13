@@ -22,12 +22,26 @@
         android:name="com.case_study_alza.screen.products.ProductsScreen"
         tools:layout="@layout/products_screen"
         >
-
         <argument
             android:name="categoryId"
             app:argType="long"
             />
+    </fragment>
 
+    <action
+        android:id="@+id/action_productDetailScreen"
+        app:destination="@id/productDetailScreen"
+        />
+
+    <fragment
+        android:id="@+id/productDetailScreen"
+        android:name="com.case_study_alza.screen.product_detail.ProductDetailScreen"
+        tools:layout="@layout/product_detail_screen"
+        >
+        <argument
+            android:name="productId"
+            app:argType="long"
+            />
     </fragment>
 
 </navigation>

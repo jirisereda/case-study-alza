@@ -7,7 +7,7 @@ import com.case_study_alza.core.Event
 import com.case_study_alza.core.ScreenViewModel
 import com.case_study_alza.services.ApiService
 import com.case_study_alza.services.CategoryItem
-import com.case_study_alza.services.FlowCategoriesApi
+import com.case_study_alza.services.FlowApi
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
@@ -18,12 +18,11 @@ import retrofit2.Retrofit
 import timber.log.Timber
 
 data class CategoriesState(
-    val categoryItems: List<CategoryItem> = emptyList(),
-    val result: Int
+    val categoryItems: List<CategoryItem> = emptyList()
 )
 
 class CategoriesViewModel : ScreenViewModel<CategoriesState, EmptyArgs>(
-    CategoriesState(result = 9999)
+    CategoriesState()
 ) {
     object HelloEvent : Event
 
@@ -40,7 +39,7 @@ class CategoriesViewModel : ScreenViewModel<CategoriesState, EmptyArgs>(
             .build()
             .create(ApiService::class.java)
 
-        FlowCategoriesApi(service).getCategories()
+        FlowApi(service).getCategories()
             .onEach {
                 Timber.d("DEBUG FlowCategoriesApi $it")
                 currentState.next { copy(categoryItems = it) }
@@ -56,6 +55,4 @@ class CategoriesViewModel : ScreenViewModel<CategoriesState, EmptyArgs>(
         //nextEvent(HelloEvent)
         MainGraphDirections.actionProductsScreen(id).navigate()
     }
-
-
 }

@@ -1,7 +1,6 @@
-package com.case_study_alza.screen.products
+package com.case_study_alza.screen.product_detail
 
 import androidx.lifecycle.viewModelScope
-import com.case_study_alza.MainGraphDirections
 import com.case_study_alza.core.ScreenViewModel
 import com.case_study_alza.services.*
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -13,15 +12,15 @@ import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 import timber.log.Timber
 
-data class ProductsState(
-    val productItems: List<ProductItem> = emptyList()
+data class ProductDetailState(
+    val productDetail: ProductDetail? = null
 )
 
-class ProductsViewModel : ScreenViewModel<ProductsState, ProductsScreenArgs>(
-    ProductsState()
+class ProductDetailViewModel : ScreenViewModel<ProductDetailState, ProductDetailScreenArgs>(
+    ProductDetailState()
 ) {
 
-    override fun onArgumentsSet(screenArguments: ProductsScreenArgs) {
+    override fun onArgumentsSet(screenArguments: ProductDetailScreenArgs) {
 
         val json = Json {
             ignoreUnknownKeys = true
@@ -34,23 +33,16 @@ class ProductsViewModel : ScreenViewModel<ProductsState, ProductsScreenArgs>(
             .build()
             .create(ApiService::class.java)
 
-        val productsRequest = ProductsRequest(FilterParameters(screenArguments.categoryId))
-
-        FlowApi(service).getProducts(productsRequest)
+        FlowApi(service).getProductDetail(screenArguments.productId)
             .onEach {
-                Timber.d("DEBUG FlowProductsApi $it")
-                currentState.next { copy(productItems = it) }
-                Timber.d("DEBUG productItems $state.productItems")
+                Timber.d("DEBUG FlowProductDetailApi $it")
+                currentState.next { copy(productDetail = it) }
+                Timber.d("DEBUG FlowProductDetailApi $state.productDetail")
             }
             .catch {
-                Timber.e("DEBUG FlowProductsApi Error $it.message")
+                Timber.e("DEBUG FlowProductDetailApi Error $it.message")
             }
             .launchIn(viewModelScope)
-    }
-
-    fun selectProduct(id: Long) {
-        Timber.d("DEBUG product selected $id")
-        MainGraphDirections.actionProductDetailScreen(id).navigate()
     }
 }
 
