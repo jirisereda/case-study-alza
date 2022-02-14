@@ -7,7 +7,9 @@ import androidx.navigation.fragment.navArgs
 import com.case_study_alza.R
 import com.case_study_alza.core.Screen
 import com.case_study_alza.databinding.ProductsScreenBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ProductsScreen : Screen<ProductsViewModel, ProductsScreenBinding, ProductsScreenArgs>() {
     override val viewModel: ProductsViewModel by viewModels()
     override val layoutId: Int

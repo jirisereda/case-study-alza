@@ -9,8 +9,9 @@ import com.case_study_alza.core.EmptyArgs
 import com.case_study_alza.core.Event
 import com.case_study_alza.core.Screen
 import com.case_study_alza.databinding.CategoriesScreenBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class CategoriesScreen : Screen<CategoriesViewModel, CategoriesScreenBinding, EmptyArgs>() {
     override val viewModel: CategoriesViewModel by viewModels()
     override val layoutId: Int
@@ -23,7 +24,6 @@ class CategoriesScreen : Screen<CategoriesViewModel, CategoriesScreenBinding, Em
         )
     }
     override val screenArgs = EmptyArgs
-
 
     override fun handleEvent(event: Event) {
         when(event) {

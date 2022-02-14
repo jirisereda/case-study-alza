@@ -4,39 +4,27 @@ import androidx.lifecycle.viewModelScope
 import com.case_study_alza.MainGraphDirections
 import com.case_study_alza.core.ScreenViewModel
 import com.case_study_alza.services.*
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
-import retrofit2.Retrofit
 import timber.log.Timber
+import javax.inject.Inject
 
 data class ProductsState(
     val productItems: List<ProductItem> = emptyList()
 )
 
-class ProductsViewModel : ScreenViewModel<ProductsState, ProductsScreenArgs>(
+class ProductsViewModel @Inject constructor(
+    private val apiService: ApiService
+) : ScreenViewModel<ProductsState, ProductsScreenArgs>(
     ProductsState()
 ) {
 
     override fun onArgumentsSet(screenArguments: ProductsScreenArgs) {
 
-        val json = Json {
-            ignoreUnknownKeys = true
-            isLenient = true
-        }
-
-        val service = Retrofit.Builder()
-            .baseUrl("https://www.alza.cz/Services/RestService.svc/")
-            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
-            .build()
-            .create(ApiService::class.java)
-
         val productsRequest = ProductsRequest(FilterParameters(screenArguments.categoryId))
 
-        FlowApi(service).getProducts(productsRequest)
+        FlowApi(apiService).getProducts(productsRequest)
             .onEach {
                 Timber.d("DEBUG FlowProductsApi $it")
                 currentState.next { copy(productItems = it) }

@@ -8,38 +8,28 @@ import com.case_study_alza.core.ScreenViewModel
 import com.case_study_alza.services.ApiService
 import com.case_study_alza.services.CategoryItem
 import com.case_study_alza.services.FlowApi
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
-import retrofit2.Retrofit
 import timber.log.Timber
+import javax.inject.Inject
 
 data class CategoriesState(
     val categoryItems: List<CategoryItem> = emptyList()
 )
 
-class CategoriesViewModel : ScreenViewModel<CategoriesState, EmptyArgs>(
+@HiltViewModel
+class CategoriesViewModel @Inject constructor(
+    private val apiService: ApiService
+) : ScreenViewModel<CategoriesState, EmptyArgs>(
     CategoriesState()
 ) {
     object HelloEvent : Event
 
     override fun onArgumentsSet(screenArguments: EmptyArgs) {
 
-        val json = Json {
-            ignoreUnknownKeys = true
-            isLenient = true
-        }
-
-        val service = Retrofit.Builder()
-            .baseUrl("https://www.alza.cz/Services/RestService.svc/")
-            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
-            .build()
-            .create(ApiService::class.java)
-
-        FlowApi(service).getCategories()
+        FlowApi(apiService).getCategories()
             .onEach {
                 Timber.d("DEBUG FlowCategoriesApi $it")
                 currentState.next { copy(categoryItems = it) }
