@@ -15,7 +15,15 @@ import javax.inject.Inject
 data class ProductDetailState(
     val loadingState: LoadingState = LoadingState.Loading,
     val productDetail: ProductDetail? = null
-)
+) {
+    val imageUrlAvailable: Boolean
+        get() {
+            productDetail?.imgs?.let {
+                return it.count() > 0
+            }
+            return false
+        }
+}
 
 @HiltViewModel
 class ProductDetailViewModel @Inject constructor(

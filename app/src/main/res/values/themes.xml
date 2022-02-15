@@ -15,6 +15,7 @@
 
         <item name="textCopy">@style/CopyText</item>
         <item name="screenMargin">@dimen/screen_margin</item>
+        <item name="errorIconDrawableTint">@color/black</item>
     </style>
 
     <style name="CopyText">

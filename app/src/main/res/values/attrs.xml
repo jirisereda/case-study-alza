@@ -2,6 +2,7 @@
 <resources>
     <attr name="textCopy" format="reference" />
     <attr name="screenMargin" format="dimension" />
+    <attr name="errorIconDrawableTint" format="reference" />
     <declare-styleable name="LoadingLayout">
         <attr name="loadingView" format="reference" />
         <attr name="contentView" format="reference" />

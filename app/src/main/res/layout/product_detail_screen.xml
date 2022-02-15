@@ -46,6 +46,7 @@
             android:id="@+id/productDetailLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="16dp"
             android:orientation="vertical">
 
             <TextView
@@ -57,13 +58,15 @@
                 tools:text="product detail name"
                 />
 
-            <TextView
-                style="?attr/textCopy"
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.state.productDetail.id.toString()}"
-                android:textAlignment="textStart"
-                tools:text="product detail id"
+                android:layout_height="match_parent"
+                android:layout_margin="16dp"
+                app:clipToOutline="@{true}"
+                bind:placeholderDrawable="@{@drawable/image_placeholder}"
+                bind:errorDrawable="@{@drawable/ic_image_error_center}"
+                bind:url="@{viewModel.state.imageUrlAvailable == true ? viewModel.state.productDetail.imgs.get(0).url : null}"
+                tools:src="@android:color/darker_gray"
                 />
 
         </LinearLayout>
