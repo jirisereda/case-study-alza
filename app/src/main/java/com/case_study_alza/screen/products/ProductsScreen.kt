@@ -20,6 +20,7 @@ class ProductsScreen : Screen<ProductsViewModel, ProductsScreenBinding, Products
             it.state.map { state -> state.productItems }.asFlow(),
             it
         )
+        viewModel = it
     }
     override val screenArgs: ProductsScreenArgs by navArgs()
 

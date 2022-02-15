@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">case-study-alza</string>
+    <string name="loading">Loading …</string>
+    <string name="error">Something went wrong</string>
+    <string name="no_categories_found">No categories found</string>
+    <string name="try_again">Try again</string>
 </resources>

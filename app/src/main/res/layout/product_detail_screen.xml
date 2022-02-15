@@ -2,6 +2,8 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     >
 
     <data>
@@ -9,35 +11,64 @@
             name="viewModel"
             type="com.case_study_alza.screen.product_detail.ProductDetailViewModel"
             />
-
     </data>
 
-    <LinearLayout
+    <com.case_study_alza.ui.views.LoadingLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        app:contentView="@id/productDetailLayout"
+        app:errorView="@id/productDetailErrorLayout"
+        app:loadingState="@{viewModel.state.loadingState}"
+        app:loadingView="@id/productDetailLoadingLayout"
+        >
 
         <TextView
+            android:id="@+id/productDetailLoadingLayout"
             style="?attr/textCopy"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.state.productDetail.name}"
-            android:textAlignment="textStart"
-            tools:text="product detail name"
+            android:layout_height="match_parent"
+            android:text="@string/loading"
+            android:gravity="center"
+            tools:text="Loading"
+            tools:visibility="gone"
             />
 
-        <TextView
-            style="?attr/textCopy"
+        <include
+            android:id="@+id/productDetailErrorLayout"
+            layout="@layout/custom_message_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@{viewModel.state.productDetail.id.toString()}"
-            android:textAlignment="textStart"
-            tools:text="product detail id"
+            android:layout_height="match_parent"
+            bind:textSubtitle="@{@string/try_again}"
+            bind:textTitle="@{@string/error}"
             />
 
+        <LinearLayout
+            android:id="@+id/productDetailLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <TextView
+                style="?attr/textCopy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.state.productDetail.name}"
+                android:textAlignment="textStart"
+                tools:text="product detail name"
+                />
+
+            <TextView
+                style="?attr/textCopy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.state.productDetail.id.toString()}"
+                android:textAlignment="textStart"
+                tools:text="product detail id"
+                />
+
+        </LinearLayout>
+
+    </com.case_study_alza.ui.views.LoadingLayout>
 
 </layout>
 

@@ -14,15 +14,44 @@
             type="com.case_study_alza.screen.products.ProductsAdapter"
             />
 
+        <variable
+            name="viewModel"
+            type="com.case_study_alza.screen.products.ProductsViewModel"
+            />
     </data>
 
-    <LinearLayout
+
+    <com.case_study_alza.ui.views.LoadingLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        app:contentView="@id/productsResultRecycler"
+        app:errorView="@id/productsErrorLayout"
+        app:loadingState="@{viewModel.state.loadingState}"
+        app:loadingView="@id/productsLoadingLayout"
+        >
+
+        <TextView
+            android:id="@+id/productsLoadingLayout"
+            style="?attr/textCopy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/loading"
+            android:gravity="center"
+            tools:text="Loading"
+            tools:visibility="gone"
+            />
+
+        <include
+            android:id="@+id/productsErrorLayout"
+            layout="@layout/custom_message_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            bind:textSubtitle="@{@string/try_again}"
+            bind:textTitle="@{@string/error}"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/categoriesRecycler"
+            android:id="@+id/productsResultRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -32,7 +61,7 @@
             tools:listitem="@layout/item_product"
             />
 
-    </LinearLayout>
+    </com.case_study_alza.ui.views.LoadingLayout>
 
 </layout>
 
