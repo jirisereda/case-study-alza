@@ -1,9 +1,5 @@
 package com.case_study_alza.core
 
-import android.app.AlertDialog
-import android.content.Intent
-import android.content.Intent.ACTION_VIEW
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -18,7 +14,7 @@ import kotlinx.coroutines.launch
 /**
  * Sets up default event handler for View Model events
  */
-public fun <SM : ScreenViewModel<*, *>> Fragment.setupDefaultEventHandler(
+fun <SM : ScreenViewModel<*, *>> Fragment.setupDefaultEventHandler(
     viewModel: SM, otherEventsHandler: (Event) -> Unit
 ) {
     parentFragmentManager.registerFragmentLifecycleCallbacks(
@@ -42,14 +38,6 @@ public fun <SM : ScreenViewModel<*, *>> Fragment.setupDefaultEventHandler(
                                     event.action,
                                     event.args
                                 )
-                                is OpenUrlEvent -> startActivity(
-                                    Intent(
-                                        ACTION_VIEW,
-                                        Uri.parse(event.url)
-                                    )
-                                )
-                                is BackEvent -> findNavController().popBackStack()
-                                is ErrorEvent -> handleError(event)
                                 else -> otherEventsHandler(event)
                             }
                         }
@@ -63,14 +51,6 @@ public fun <SM : ScreenViewModel<*, *>> Fragment.setupDefaultEventHandler(
                 if (f == this@setupDefaultEventHandler) {
                     parentFragmentManager.unregisterFragmentLifecycleCallbacks(this)
                 }
-            }
-
-            private fun handleError(errorEvent: ErrorEvent) {
-                AlertDialog.Builder(requireContext())
-                    .setTitle(errorEvent.title)
-                    .setMessage(errorEvent.message)
-                    .setPositiveButton(android.R.string.ok, null)
-                    .show()
             }
         },
         false

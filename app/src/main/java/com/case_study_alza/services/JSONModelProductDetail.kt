@@ -10,13 +10,14 @@ data class JSONModelProductDetail(
 @Serializable
 data class ProductDetail(
     val name: String?,
+    val spec: String?,
     val id: Long?,
-    val imgs : List<ProductImg>
+    val imgs : List<ProductImg>?
 )
 
 @Serializable
 data class ProductImg(
-    val url: String?
+    val big_url: String?
 )
 
 

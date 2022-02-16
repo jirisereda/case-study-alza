@@ -1,6 +1,5 @@
 package com.case_study_alza.core
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,15 +10,13 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavArgs
 
-public abstract class Screen<
+abstract class Screen<
         SM : ScreenViewModel<*, ScreenArgs>, B : ViewDataBinding, ScreenArgs : NavArgs
         > : Fragment() {
-    public abstract val viewModel: SM
+    abstract val viewModel: SM
     protected abstract val layoutId: Int
     protected abstract val dataBindViewModel: B.(SM) -> Unit
     protected abstract val screenArgs: ScreenArgs
-
-
 
     private var binding: B? = null
 
@@ -48,18 +45,9 @@ public abstract class Screen<
         super.onDestroyView()
     }
 
-    private fun handleError(errorEvent: ErrorEvent) {
-        AlertDialog.Builder(requireContext())
-            .setTitle(errorEvent.title)
-            .setMessage(errorEvent.message)
-            .setPositiveButton(android.R.string.ok, null)
-            .show()
-    }
-
     protected open fun setupViews() {}
 
     protected open fun handleEvent(event: Event) {}
-
 
     protected fun requireBinding(): B = requireNotNull(binding)
 }

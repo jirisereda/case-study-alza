@@ -8,7 +8,7 @@ import retrofit2.http.Path
 
 interface ApiService {
     @GET("v1/floors")
-    suspend fun getCategories(): Response<JSONModel>
+    suspend fun getCategories(): Response<JSONModelCategories>
 
     @POST("v2/products")
     suspend fun getProducts(@Body products: ProductsRequest): Response<JSONModelProducts>

@@ -12,17 +12,17 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
-public abstract class ScreenViewModel<State, ScreenArgs : NavArgs>(initialState: State) :
+abstract class ScreenViewModel<State, ScreenArgs : NavArgs>(initialState: State) :
     ViewModel() {
     private val mutableState = MutableStateFlow(initialState)
 
-    public val currentState: State
+    val currentState: State
         get() = mutableState.value
 
-    public val state: LiveData<State> = mutableState.asLiveData(viewModelScope.coroutineContext)
+    val state: LiveData<State> = mutableState.asLiveData(viewModelScope.coroutineContext)
 
     private val _events = MutableSharedFlow<Event>()
-    public val events: Flow<Event> = _events.asSharedFlow()
+    val events: Flow<Event> = _events.asSharedFlow()
 
     private lateinit var screenArguments: ScreenArgs
 
@@ -36,16 +36,9 @@ public abstract class ScreenViewModel<State, ScreenArgs : NavArgs>(initialState:
         }
     }
 
-    private fun navigate(navigationEvent: NavigationEvent) = nextEvent(navigationEvent)
-
-    protected fun navigate(navigationAction: Int): Unit =
-        navigate(NavigationEvent(navigationAction))
-
     protected fun NavDirections.navigate(): Unit = nextEvent(toNavEvent())
 
-    public fun navigateBack(): Unit = nextEvent(BackEvent)
-
-    public fun setArguments(screenArguments: ScreenArgs) {
+    fun setArguments(screenArguments: ScreenArgs) {
         if (!this::screenArguments.isInitialized) {
             this.screenArguments = screenArguments
             onArgumentsSet(screenArguments)
@@ -53,8 +46,4 @@ public abstract class ScreenViewModel<State, ScreenArgs : NavArgs>(initialState:
     }
 
     protected open fun onArgumentsSet(screenArguments: ScreenArgs) {}
-
-    protected fun <T> Flow<T>.handleErrors(): Flow<T> = handleErrors {
-        nextEvent(it.toErrorEvent())
-    }
 }

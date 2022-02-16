@@ -50,7 +50,7 @@
             android:orientation="vertical">
 
             <TextView
-                style="?attr/textCopy"
+                style="?attr/headline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.state.productDetail.name}"
@@ -58,14 +58,23 @@
                 tools:text="product detail name"
                 />
 
+            <TextView
+                style="?attr/textCopy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{viewModel.state.productDetail.spec}"
+                android:textAlignment="textStart"
+                tools:text="product description"
+                />
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"
-                app:clipToOutline="@{true}"
                 bind:placeholderDrawable="@{@drawable/image_placeholder}"
                 bind:errorDrawable="@{@drawable/ic_image_error_center}"
-                bind:url="@{viewModel.state.imageUrlAvailable == true ? viewModel.state.productDetail.imgs.get(0).url : null}"
+                bind:url="@{viewModel.state.imageUrlAvailable == true ? viewModel.state.productDetail.imgs.get(0).big_url : null}"
                 tools:src="@android:color/darker_gray"
                 />
 

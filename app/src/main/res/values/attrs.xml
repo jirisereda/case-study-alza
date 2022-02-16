@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="textCopy" format="reference" />
+    <attr name="headline" format="reference" />
     <attr name="screenMargin" format="dimension" />
     <attr name="errorIconDrawableTint" format="reference" />
     <declare-styleable name="LoadingLayout">

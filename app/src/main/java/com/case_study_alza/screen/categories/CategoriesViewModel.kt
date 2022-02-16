@@ -28,8 +28,6 @@ class CategoriesViewModel @Inject constructor(
 ) : ScreenViewModel<CategoriesState, EmptyArgs>(
     CategoriesState()
 ) {
-    object HelloEvent : Event
-
     override fun onArgumentsSet(screenArguments: EmptyArgs) {
 
         FlowApi(apiService).getCategories()
@@ -48,7 +46,6 @@ class CategoriesViewModel @Inject constructor(
     }
 
     fun selectCategory(id: Long) {
-        //nextEvent(HelloEvent)
         MainGraphDirections.actionProductsScreen(id).navigate()
     }
 }
