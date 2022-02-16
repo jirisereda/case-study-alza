@@ -7,6 +7,7 @@ Categories -> Products -> Product detail
 **#Architecture**
 
 Kotlin
+
 MVVM
 
 ViewModel and LifeCycle
@@ -34,6 +35,17 @@ Corresponding APK naming:
 
 app-[debug, release-unsigned].apk
 
+**#Things for future improvement**
+
+Room DB - Single source of truth
+
+Remove completely dependency on LiveData
+
+Graphical back navigation in Products and Product detail screen
+
+Breadcrumbs
+
+**#Screenshots**
 
 ![alt text](https://github.com/jirisereda/case-study-alza/blob/master/Screenshot_1645009424.png?raw=true)
 
