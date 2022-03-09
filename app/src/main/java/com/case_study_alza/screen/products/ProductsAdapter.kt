@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import com.case_study_alza.R
 import com.case_study_alza.databinding.ItemProductBinding
-import com.case_study_alza.services.ProductItem
+import com.case_study_alza.services.models.ProductItem
 import com.case_study_alza.ui.DividerItemDecorator
 import com.case_study_alza.ui.SimpleListAdapter
 import kotlinx.coroutines.flow.Flow

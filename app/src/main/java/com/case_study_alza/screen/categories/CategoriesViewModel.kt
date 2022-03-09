@@ -3,12 +3,11 @@ package com.case_study_alza.screen.categories
 import androidx.lifecycle.viewModelScope
 import com.case_study_alza.MainGraphDirections
 import com.case_study_alza.core.EmptyArgs
-import com.case_study_alza.core.Event
 import com.case_study_alza.core.ScreenViewModel
 import com.case_study_alza.core.loadingCall
 import com.case_study_alza.services.ApiService
-import com.case_study_alza.services.CategoryItem
 import com.case_study_alza.services.FlowApi
+import com.case_study_alza.services.models.CategoryItem
 import com.case_study_alza.ui.views.LoadingState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch

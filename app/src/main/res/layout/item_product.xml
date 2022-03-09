@@ -8,7 +8,7 @@
 
         <variable
             name="product"
-            type="com.case_study_alza.services.ProductItem"
+            type="com.case_study_alza.services.models.ProductItem"
             />
 
         <variable

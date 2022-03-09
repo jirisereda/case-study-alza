@@ -5,6 +5,7 @@ import com.case_study_alza.MainGraphDirections
 import com.case_study_alza.core.ScreenViewModel
 import com.case_study_alza.core.loadingCall
 import com.case_study_alza.services.*
+import com.case_study_alza.services.models.ProductItem
 import com.case_study_alza.ui.views.LoadingState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
